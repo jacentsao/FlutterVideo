@@ -269,7 +269,7 @@ class _AgoraRTMState extends State<AgoraRTMPage> {
     }
 
     try {
-      await _client.sendMessageToPeer(peerUid, AgoraRtmMessage(text));
+      await _client.sendMessageToPeer(peerUid, AgoraRtmMessage.fromText(text), true);
       _log('Send peer message success.');
     } catch (errorCode) {
       _log('Send peer message error: ' + errorCode.toString());
@@ -327,7 +327,7 @@ class _AgoraRTMState extends State<AgoraRTMPage> {
       return;
     }
     try {
-      await _channel.sendMessage(AgoraRtmMessage(text));
+      await _channel.sendMessage(AgoraRtmMessage.fromText(text));
       _log('Send channel message success.');
     } catch (errorCode) {
       _log('Send channel message error: ' + errorCode.toString());

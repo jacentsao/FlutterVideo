@@ -383,15 +383,15 @@ Future<void> getCameraDemo() async {
 
 Future getIDCardInfo(File file) async {
   Dio dio = new Dio();
-  dio.options.contentType=ContentType.parse("multipart/form-data");
+  dio.options.contentType="multipart/form-data";
   var baseUrl = "https://api-cn.faceplusplus.com/cardpp/v1/ocridcard";
 
   final String targetPath = await getTempDir();
-  File compressFile =await getCompressImage(file, targetPath);
-  FormData formData = new FormData.from({
+  File compressFile = await getCompressImage(file, targetPath);
+  FormData formData = new FormData.fromMap({
     "api_key": APPApiKey.Face_api_key,
     "api_secret": APPApiKey.Face_api_secret,
-    "image_file": new UploadFileInfo(compressFile, "image_file")
+    "image_file": MultipartFile.fromString(compressFile.readAsStringSync())
   });
   Response<Map>  response =await dio.post<Map>(baseUrl,data:formData);
   print(response.data);

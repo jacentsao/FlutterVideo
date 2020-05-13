@@ -109,7 +109,7 @@ class VideoCallState extends State<VideoCallPage> {
   /// 发送消息通知对方取消通话
   Future<void> _initSendMessage() async{
     String msg = AgoraUtils.getAgoraMsgType(2);
-    await _client.sendMessageToPeer(widget.firendName, AgoraRtmMessage(msg));
+    await _client.sendMessageToPeer(widget.firendName, AgoraRtmMessage.fromText(msg), true);
   }
   /// Create third.agora sdk instance and initialze
   Future<void> _initAgoraRtcEngine() async {

@@ -137,7 +137,7 @@ class AgoraCustomState extends State<AgoraCustomPage> {
         try{
           _channelName = ConstantObject.getUser().agoraId+peerId;
           String msg = AgoraUtils.getAgoraMsgType(1)+","+_channelName;
-          await _client.sendMessageToPeer(peerId, AgoraRtmMessage(msg));
+          await _client.sendMessageToPeer(peerId, AgoraRtmMessage.fromText(msg), true);
           Navigator.push(context, new MaterialPageRoute(
               builder: (BuildContext context) {
                 return new VideoCallPage(_channelName,peerId);

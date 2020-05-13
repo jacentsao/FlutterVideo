@@ -108,7 +108,7 @@ class VideoAnswerState extends State<VideoAnswerPage> {
     /*-------收到消息--------*/
     try {
       String msg = AgoraUtils.getAgoraMsgType(3);
-      await widget._client.sendMessageToPeer(widget.firendName, AgoraRtmMessage(msg));
+      await widget._client.sendMessageToPeer(widget.firendName, AgoraRtmMessage.fromText(msg), true);
     } catch (e) {
       print(e);
     }
